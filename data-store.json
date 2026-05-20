@@ -5,20 +5,12 @@
       "title": "Build real-time WebSocket synchronization engine",
       "description": "Construct standard Node.js server event routers to handle drag-and-drop actions, presence syncing, cursor positioning, and live task editing.",
       "column": "inprogress",
-      "priority": "high",
+      "priority": "medium",
       "tags": [
         "Sockets",
         "Backend"
       ],
-      "comments": [
-        {
-          "id": "cmt1",
-          "userName": "Wired Fox",
-          "avatarColor": "bg-teal-500",
-          "text": "WebSocket setup runs perfectly on shared port 3000!",
-          "createdAt": "2026-05-20T16:02:15.715Z"
-        }
-      ],
+      "assigneeColor": "bg-slate-700",
       "checklist": [
         {
           "id": "c1",
@@ -36,20 +28,29 @@
           "completed": true
         }
       ],
+      "comments": [
+        {
+          "id": "cmt1",
+          "userName": "Wired Fox",
+          "avatarColor": "bg-teal-500",
+          "text": "WebSocket setup runs perfectly on shared port 3000!",
+          "createdAt": "2026-05-20T16:02:15.715Z"
+        }
+      ],
       "createdAt": "2026-05-19T17:02:15.715Z",
-      "updatedAt": "2026-05-20T17:34:20.007Z"
+      "updatedAt": "2026-05-20T19:48:21.859Z"
     },
     {
       "id": "t2",
       "title": "Establish unified styling theme",
       "description": "Polished warm twilight aesthetics using Tailwind. Incorporate fluid board columns, user presence indicators, and interactive sidebar timelines.",
-      "column": "todo",
+      "column": "done",
       "priority": "medium",
       "tags": [
         "UI Design",
         "Tailwind v4"
       ],
-      "comments": [],
+      "assigneeColor": "bg-slate-700",
       "checklist": [
         {
           "id": "c4",
@@ -57,8 +58,9 @@
           "completed": false
         }
       ],
+      "comments": [],
       "createdAt": "2026-05-20T05:02:15.715Z",
-      "updatedAt": "2026-05-20T17:02:15.715Z"
+      "updatedAt": "2026-05-20T20:46:16.958Z"
     },
     {
       "id": "t3",
@@ -79,418 +81,419 @@
       "id": "t4",
       "title": "Configure bundle bundling routines",
       "description": "Ensure esbuild successfully bundles CSS and custom server runtimes for solid deployment outputs.",
-      "column": "done",
+      "column": "todo",
       "priority": "low",
       "tags": [
         "Configuration",
         "Node"
       ],
-      "comments": [],
+      "assigneeColor": "bg-slate-700",
       "checklist": [],
+      "comments": [],
       "createdAt": "2026-05-18T17:02:15.715Z",
-      "updatedAt": "2026-05-20T17:02:15.715Z"
+      "updatedAt": "2026-05-20T20:46:40.911Z"
     }
   ],
   "logs": [
     {
-      "id": "join-aoyp0ehed",
+      "id": "join-qwxw15ko6",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:24:03.742Z"
+      "timestamp": "2026-05-20T20:59:58.463Z"
     },
     {
-      "id": "join-foy3flj2s",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:24:03.741Z"
-    },
-    {
-      "id": "leave-d7l7q5jdh",
+      "id": "leave-dqa0gid32",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:24:03.431Z"
+      "timestamp": "2026-05-20T20:59:58.423Z"
     },
     {
-      "id": "leave-3nf86qo03",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:24:03.429Z"
-    },
-    {
-      "id": "join-zi7o84sbq",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:59.734Z"
-    },
-    {
-      "id": "join-jpmjbbufm",
+      "id": "join-d2uwlue0z",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:59.733Z"
+      "timestamp": "2026-05-20T20:59:54.496Z"
     },
     {
-      "id": "leave-bd19cn7wf",
+      "id": "leave-ym7tntrdc",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:59.421Z"
+      "timestamp": "2026-05-20T20:59:54.425Z"
     },
     {
-      "id": "leave-yr7ds6ubw",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:59.419Z"
-    },
-    {
-      "id": "join-w2435moun",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:55.736Z"
-    },
-    {
-      "id": "join-cshqhygtx",
+      "id": "join-3l938u2oh",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:55.735Z"
+      "timestamp": "2026-05-20T20:59:50.487Z"
     },
     {
-      "id": "leave-hs47fjv05",
+      "id": "leave-s78pqqo4e",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:55.425Z"
+      "timestamp": "2026-05-20T20:59:50.417Z"
     },
     {
-      "id": "leave-t6jiyuap7",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:55.424Z"
-    },
-    {
-      "id": "join-gtl068y2r",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:51.729Z"
-    },
-    {
-      "id": "join-gfoibqzlm",
+      "id": "join-90m8jt11f",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:51.728Z"
+      "timestamp": "2026-05-20T20:59:46.477Z"
     },
     {
-      "id": "leave-vzlk53dp5",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:51.418Z"
-    },
-    {
-      "id": "leave-nnhrnffee",
+      "id": "leave-56kliykph",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:51.417Z"
+      "timestamp": "2026-05-20T20:59:46.428Z"
     },
     {
-      "id": "join-d8qvb0fah",
+      "id": "join-ch6deyl1e",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:47.737Z"
+      "timestamp": "2026-05-20T20:59:42.489Z"
     },
     {
-      "id": "join-14tor4e72",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:47.736Z"
-    },
-    {
-      "id": "leave-hvelyc6jo",
+      "id": "leave-grf6abqfm",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:47.426Z"
+      "timestamp": "2026-05-20T20:59:42.426Z"
     },
     {
-      "id": "leave-2sma7pemj",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:47.424Z"
-    },
-    {
-      "id": "join-7d2q975lo",
+      "id": "join-3wbyqz159",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:43.738Z"
+      "timestamp": "2026-05-20T20:59:38.497Z"
     },
     {
-      "id": "join-jabvus56s",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:43.737Z"
-    },
-    {
-      "id": "leave-bqw4nvu40",
+      "id": "leave-blo1t1t9t",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:43.428Z"
+      "timestamp": "2026-05-20T20:59:38.424Z"
     },
     {
-      "id": "leave-fu2m4ij1f",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:43.427Z"
-    },
-    {
-      "id": "join-on4dagbdl",
+      "id": "join-bkmaf2s41",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:39.733Z"
+      "timestamp": "2026-05-20T20:59:34.491Z"
     },
     {
-      "id": "join-ycdz6z77x",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:39.732Z"
-    },
-    {
-      "id": "leave-lbpyk20dd",
+      "id": "leave-g19a0ofqn",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:39.420Z"
+      "timestamp": "2026-05-20T20:59:34.417Z"
     },
     {
-      "id": "leave-rubcxffo2",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:39.419Z"
-    },
-    {
-      "id": "join-ltrg4ciak",
+      "id": "join-1ssmtstsq",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:35.733Z"
+      "timestamp": "2026-05-20T20:59:30.452Z"
     },
     {
-      "id": "join-au6qjv3oa",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:35.731Z"
-    },
-    {
-      "id": "leave-eu2do8j06",
+      "id": "leave-dn3demox7",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:35.423Z"
+      "timestamp": "2026-05-20T20:59:30.415Z"
     },
     {
-      "id": "leave-4ntv5cqfu",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:35.421Z"
-    },
-    {
-      "id": "join-cj8im02lp",
+      "id": "join-zwo3x3b6s",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:31.731Z"
+      "timestamp": "2026-05-20T20:59:26.482Z"
     },
     {
-      "id": "join-ct7jmdp5o",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:31.726Z"
-    },
-    {
-      "id": "leave-4y1ymvnl0",
+      "id": "leave-bqzckco4d",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:31.418Z"
+      "timestamp": "2026-05-20T20:59:26.421Z"
     },
     {
-      "id": "leave-75i4uuea2",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:31.417Z"
-    },
-    {
-      "id": "join-rxo2ojty8",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:27.737Z"
-    },
-    {
-      "id": "join-p8t420m1v",
+      "id": "join-9hofha5zm",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:27.736Z"
+      "timestamp": "2026-05-20T20:59:22.503Z"
     },
     {
-      "id": "leave-4zdr3dvoq",
+      "id": "leave-guhi1cdnh",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:27.427Z"
+      "timestamp": "2026-05-20T20:59:22.422Z"
     },
     {
-      "id": "leave-k6y14rzt1",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:27.425Z"
-    },
-    {
-      "id": "join-rd9njtkkk",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:23.735Z"
-    },
-    {
-      "id": "join-vy6l3tk68",
+      "id": "join-0q1be2phi",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:23.734Z"
+      "timestamp": "2026-05-20T20:59:18.457Z"
     },
     {
-      "id": "leave-de34dtojb",
+      "id": "leave-wy94gwcqc",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:23.424Z"
+      "timestamp": "2026-05-20T20:59:18.420Z"
     },
     {
-      "id": "leave-ucctpfkwc",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:23.423Z"
-    },
-    {
-      "id": "join-1x78vk2qa",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:19.738Z"
-    },
-    {
-      "id": "join-8rhlsyl8o",
+      "id": "join-9y6ardogh",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:19.737Z"
+      "timestamp": "2026-05-20T20:59:14.479Z"
     },
     {
-      "id": "leave-oiysumnw1",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
-      "action": "left the server",
-      "timestamp": "2026-05-20T18:23:19.424Z"
-    },
-    {
-      "id": "leave-nw6eiotl5",
+      "id": "leave-v4yr8b9l9",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "left the server",
-      "timestamp": "2026-05-20T18:23:19.423Z"
+      "timestamp": "2026-05-20T20:59:14.425Z"
     },
     {
-      "id": "join-xvs8l6cwa",
+      "id": "join-ly5ovcbs0",
       "userId": "usr-q3au25lgf",
       "userName": "Swift Lynx",
       "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:15.728Z"
+      "timestamp": "2026-05-20T20:59:10.482Z"
     },
     {
-      "id": "join-ikaygatnc",
-      "userId": "usr-lzws1zkmo",
-      "userName": "Zenith Cheetah",
-      "avatarColor": "bg-slate-700",
+      "id": "leave-5xd5rgsur",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:59:10.424Z"
+    },
+    {
+      "id": "join-wqngu5lfm",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
       "action": "joined the server",
-      "timestamp": "2026-05-20T18:23:15.726Z"
+      "timestamp": "2026-05-20T20:59:07.222Z"
+    },
+    {
+      "id": "leave-nc5n8w3k1",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:59:07.193Z"
+    },
+    {
+      "id": "join-ls0gr84vd",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:59:04.203Z"
+    },
+    {
+      "id": "leave-x3yo15y3o",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:59:04.172Z"
+    },
+    {
+      "id": "join-s2266l1ck",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:59:01.182Z"
+    },
+    {
+      "id": "leave-o1pkhobog",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:59:01.151Z"
+    },
+    {
+      "id": "join-tkeqb4qxv",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:58.157Z"
+    },
+    {
+      "id": "leave-6u9n3x14u",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:58.130Z"
+    },
+    {
+      "id": "join-soivlx33j",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:55.140Z"
+    },
+    {
+      "id": "leave-ble2qsuvs",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:55.111Z"
+    },
+    {
+      "id": "join-5r9ic78lo",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:52.128Z"
+    },
+    {
+      "id": "leave-brv6qyjbp",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:52.095Z"
+    },
+    {
+      "id": "join-lu09182rb",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:49.108Z"
+    },
+    {
+      "id": "leave-2qvuv1pbe",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:49.075Z"
+    },
+    {
+      "id": "join-1yy0px4xy",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:46.086Z"
+    },
+    {
+      "id": "leave-irnwdhmb6",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:46.053Z"
+    },
+    {
+      "id": "join-m6xddmds8",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:43.210Z"
+    },
+    {
+      "id": "leave-nxxt677qk",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:43.038Z"
+    },
+    {
+      "id": "join-vuw6gwott",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:40.050Z"
+    },
+    {
+      "id": "leave-1b5m3puz5",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:40.020Z"
+    },
+    {
+      "id": "join-yry4iwczd",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:37.038Z"
+    },
+    {
+      "id": "leave-4lx6qir52",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:37.000Z"
+    },
+    {
+      "id": "join-9c1cfg5ie",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "joined the server",
+      "timestamp": "2026-05-20T20:58:34.009Z"
+    },
+    {
+      "id": "leave-el4ucv42w",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "action": "left the server",
+      "timestamp": "2026-05-20T20:58:33.979Z"
     }
   ],
   "chat": [
@@ -517,6 +520,30 @@
       "avatarColor": "bg-amber-500",
       "text": "hey",
       "timestamp": "2026-05-20T18:06:05.481Z"
+    },
+    {
+      "id": "msg-6ysxvw99p",
+      "userId": "usr-lzws1zkmo",
+      "userName": "Zenith Cheetah",
+      "avatarColor": "bg-slate-700",
+      "text": "vp nambie",
+      "timestamp": "2026-05-20T19:38:06.617Z"
+    },
+    {
+      "id": "msg-3090qdkg7",
+      "userId": "usr-lzws1zkmo",
+      "userName": "Zenith Cheetah",
+      "avatarColor": "bg-slate-700",
+      "text": "hi",
+      "timestamp": "2026-05-20T20:08:46.108Z"
+    },
+    {
+      "id": "msg-17jopx3g8",
+      "userId": "usr-q3au25lgf",
+      "userName": "Swift Lynx",
+      "avatarColor": "bg-amber-500",
+      "text": "fdsfgsgsg",
+      "timestamp": "2026-05-20T20:08:55.687Z"
     }
   ]
 }

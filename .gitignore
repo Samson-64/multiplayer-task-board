@@ -1,10 +1,46 @@
+# Environment files (NEVER commit these)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Dependencies (root level only - each project has its own)
 node_modules/
+
+# Build outputs
 build/
 dist/
 coverage/
-.DS_Store
+
+# Logs
 *.log
-.env*
-!.env.example
-.env.example
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data store
 data-store.json
+
+# Backend
+backend/node_modules/
+backend/dist/
+backend/.env
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Secrets (never commit)
+*.pem
+*.key
+credentials.json
+secrets/

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import http from 'http';
 import path from 'path';
@@ -9,11 +10,16 @@ import { BoardState, User, SocketMessage } from './types.js';
 import { CacheService } from './src/cache/index.js';
 import { AuthManager } from './src/auth/manager.js';
 import { createApiRouter } from './src/routes/api.js';
+import { validateEnvironment, getSessionSecret, getRedisUrl } from './src/utils/validateEnv.js';
+import { corsMiddleware, generalLimiter, authLimiter, helmetMiddleware, validateCorsConfig } from './src/middleware/security.js';
+
+validateEnvironment();
+validateCorsConfig();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 const DB_FILE = path.join(__dirname, '..', 'data-store.json');
 
 const DEFAULT_BOARD_STATE: BoardState = {
@@ -143,26 +149,40 @@ function getBoardState(boardId: string): BoardState {
 }
 
 // Initialize services
-const cacheService = new CacheService(process.env.REDIS_URL);
+const cacheService = new CacheService(getRedisUrl());
 const authManager = new AuthManager(cacheService);
 
 // Session middleware
 const sessionMiddleware = session({
-  secret: process.env.SESSION_SECRET || 'dev-secret-change-in-production',
+  secret: getSessionSecret(),
   resave: false,
   saveUninitialized: true,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 86400000
+    maxAge: 86400000,
+    sameSite: 'strict'
   }
 });
 
 async function startServer() {
   const app = express();
-  app.use(express.json());
+  
+  // Security middleware
+  app.use(helmetMiddleware);
+  app.use(corsMiddleware);
+  app.use(generalLimiter);
+  
+  // Body parsing
+  app.use(express.json({ limit: '10kb' }));
+  app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+  
+  // Session middleware
   app.use(sessionMiddleware);
 
+  // Apply auth limiter to auth routes
+  app.use('/api/auth', authLimiter);
+  
   // Add API routes
   app.use('/api', createApiRouter(cacheService, authManager, getBoardState));
 
@@ -451,6 +471,15 @@ async function startServer() {
     }
   }, 4000);
 
+  // Security headers for all responses
+  app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    next();
+  });
+
   app.get('*', (req, res) => {
     res.json({ 
       status: 'backend-running', 
@@ -465,7 +494,8 @@ async function startServer() {
 
   server.listen(PORT, "0.0.0.0", () => {
     console.log(`Server successfully started on http://localhost:${PORT}`);
-    console.log(`Redis cache: ${process.env.REDIS_URL || 'redis://localhost:6379'}`);
+    console.log(`Redis cache: ${getRedisUrl()}`);
+    console.log(`Node environment: ${process.env.NODE_ENV || 'development'}`);
   });
 }
 

@@ -23,7 +23,7 @@ WORKDIR /app
 # Install runtime dependencies only
 COPY package*.json ./
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
@@ -33,7 +33,7 @@ EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {if (r.statusCode !== 200) throw new Error()})"
+  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
 
 # Start the server
-CMD ["node", "dist/server.cjs"]
+CMD ["node", "dist/server.mjs"]
