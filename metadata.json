@@ -1,0 +1,6 @@
+{
+  "name": "Multiplayer Task Board",
+  "description": "A real-time multiplayer Kanban task board featuring instant state synchronization, user presence indicators, rich activity logs, and board-wide chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
