@@ -112,7 +112,8 @@ export default function App() {
           id: currentUser.id,
           name: currentUser.name,
           avatarColor: currentUser.avatarColor
-        }
+        },
+        boardId: 'default'
       }));
     };
 
@@ -245,7 +246,8 @@ export default function App() {
           avatarColor,
           activeTaskId: currentUser.activeTaskId,
           isTyping: currentUser.isTyping
-        }
+        },
+        boardId: 'default'
       }));
     }
   };
@@ -266,7 +268,8 @@ export default function App() {
           avatarColor: currentUser.avatarColor,
           activeTaskId: currentUser.activeTaskId,
           isTyping
-        }
+        },
+        boardId: 'default'
       }));
     }
   };
@@ -291,7 +294,8 @@ export default function App() {
           avatarColor: currentUser.avatarColor,
           x,
           y
-        }
+        },
+        boardId: 'default'
       }));
     }
   };
@@ -325,7 +329,8 @@ export default function App() {
           userId: currentUser.id,
           userName: currentUser.name,
           avatarColor: currentUser.avatarColor
-        }
+        },
+        boardId: 'default'
       }));
     } else {
       // Revert change if disconnected
@@ -355,7 +360,8 @@ export default function App() {
           userId: currentUser.id,
           userName: currentUser.name,
           avatarColor: currentUser.avatarColor
-        }
+        },
+        boardId: 'default'
       }));
     }
   };
@@ -378,7 +384,8 @@ export default function App() {
             userId: currentUser.id,
             userName: currentUser.name,
             avatarColor: currentUser.avatarColor
-          }
+          },
+          boardId: 'default'
         }));
       }
     }
@@ -402,7 +409,8 @@ export default function App() {
     if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
       socketRef.current.send(JSON.stringify({
         type: 'chat:message',
-        payload: { message }
+        payload: { message },
+        boardId: 'default'
       }));
     }
   };
@@ -425,7 +433,8 @@ export default function App() {
           avatarColor: currentUser.avatarColor,
           activeTaskId: task.id,
           isTyping: currentUser.isTyping
-        }
+        },
+        boardId: 'default'
       }));
     }
   };
@@ -454,7 +463,8 @@ export default function App() {
           avatarColor: currentUser.avatarColor,
           activeTaskId: null,
           isTyping: currentUser.isTyping
-        }
+        },
+        boardId: 'default'
       }));
     }
   };

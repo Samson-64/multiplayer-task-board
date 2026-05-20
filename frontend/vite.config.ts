@@ -22,5 +22,21 @@ export default defineConfig(() => {
         },
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom'],
+            ui: ['lucide-react', 'motion'],
+          },
+        },
+      },
+      sourcemap: false,
+      minify: 'terser',
+    },
+    assetsInclude: ['**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot', '**/*.svg'],
+    headers: {
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    },
   };
 });

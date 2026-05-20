@@ -3,8 +3,12 @@ import http from 'http';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { WebSocket, WebSocketServer } from 'ws';
-import { BoardState, User, SocketMessage, Task, ChatMessage } from './types.js';
+import { WebSocketServer } from 'ws';
+import session from 'express-session';
+import { BoardState, User, SocketMessage } from './types.js';
+import { CacheService } from './src/cache/index.js';
+import { AuthManager } from './src/auth/manager.js';
+import { createApiRouter } from './src/routes/api.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -99,30 +103,27 @@ const DEFAULT_BOARD_STATE: BoardState = {
   ]
 };
 
-let boardState: BoardState = { ...DEFAULT_BOARD_STATE };
+// Multi-board support
+const boards = new Map<string, BoardState>();
+const DEFAULT_BOARD_ID = 'default';
 
-function loadDatabase() {
+function loadDatabase(): BoardState {
   try {
     if (fs.existsSync(DB_FILE)) {
       const content = fs.readFileSync(DB_FILE, 'utf-8');
       const loaded = JSON.parse(content);
       if (loaded && Array.isArray(loaded.tasks) && Array.isArray(loaded.logs) && Array.isArray(loaded.chat)) {
-        boardState = loaded;
         console.log("Database loaded successfully from " + DB_FILE);
-      } else {
-        console.log("Database file is invalid, using default state.");
-        boardState = { ...DEFAULT_BOARD_STATE };
+        return loaded;
       }
-    } else {
-      saveDatabase();
     }
   } catch (error) {
     console.error("Failed to load DB file:", error);
-    boardState = { ...DEFAULT_BOARD_STATE };
   }
+  return { ...DEFAULT_BOARD_STATE };
 }
 
-function saveDatabase() {
+function saveDatabase(boardState: BoardState) {
   try {
     fs.writeFileSync(DB_FILE, JSON.stringify(boardState, null, 2), 'utf-8');
   } catch (err) {
@@ -130,28 +131,51 @@ function saveDatabase() {
   }
 }
 
-loadDatabase();
+// Initialize board
+boards.set(DEFAULT_BOARD_ID, loadDatabase());
+
+function getBoard(boardId: string): BoardState | undefined {
+  return boards.get(boardId);
+}
+
+function getBoardState(boardId: string): BoardState {
+  return boards.get(boardId) || boards.get(DEFAULT_BOARD_ID)!;
+}
+
+// Initialize services
+const cacheService = new CacheService(process.env.REDIS_URL);
+const authManager = new AuthManager(cacheService);
+
+// Session middleware
+const sessionMiddleware = session({
+  secret: process.env.SESSION_SECRET || 'dev-secret-change-in-production',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 86400000
+  }
+});
 
 async function startServer() {
   const app = express();
   app.use(express.json());
+  app.use(sessionMiddleware);
 
-  app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', clients: wss.clients.size });
-  });
+  // Add API routes
+  app.use('/api', createApiRouter(cacheService, authManager, getBoardState));
 
   const activeUsers: { [id: string]: User } = {};
-  const activeSockets = new Map<WebSocket, string>();
-
   const userCursors: { [userId: string]: { userName: string; avatarColor: string; x: number; y: number; lastActive: number } } = {};
 
   const server = http.createServer(app);
   const wss = new WebSocketServer({ server });
 
-  const broadcast = (message: SocketMessage, excludeSocket?: WebSocket) => {
+  const broadcast = (message: SocketMessage, excludeSocket?: any) => {
     const payload = JSON.stringify(message);
     wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN && client !== excludeSocket) {
+      if (client.readyState === 1 && client !== excludeSocket) {
         client.send(payload);
       }
     });
@@ -161,15 +185,16 @@ async function startServer() {
     console.log('Client connected. Total clients:', wss.clients.size);
     let myUserId: string | null = null;
 
-    ws.on('message', (rawData) => {
+    ws.on('message', async (rawData) => {
       try {
         const msg = JSON.parse(rawData.toString()) as SocketMessage;
+        const boardId = (msg as any).boardId || DEFAULT_BOARD_ID;
+        const boardState = getBoardState(boardId);
 
         switch (msg.type) {
           case 'user:join': {
             const { id, name, avatarColor } = msg.payload;
             myUserId = id;
-            activeSockets.set(ws, id);
 
             activeUsers[id] = {
               id,
@@ -189,19 +214,24 @@ async function startServer() {
             };
             boardState.logs.unshift(joinLog);
             if (boardState.logs.length > 50) boardState.logs.pop();
-            saveDatabase();
+            saveDatabase(boardState);
+
+            // Update cache
+            await cacheService.setActiveUsers(boardId, activeUsers);
 
             ws.send(JSON.stringify({
               type: 'init',
               payload: {
                 board: boardState,
-                activeUsers
+                activeUsers,
+                boardId
               }
             }));
 
             broadcast({
               type: 'user:join',
-              payload: { id, name, avatarColor }
+              payload: { id, name, avatarColor },
+              boardId
             }, ws);
 
             broadcast({
@@ -218,6 +248,8 @@ async function startServer() {
                 ...activeUsers[myUserId],
                 ...updated
               };
+
+              await cacheService.setActiveUsers(boardId, activeUsers);
 
               broadcast({
                 type: 'users:sync',
@@ -265,14 +297,23 @@ async function startServer() {
             boardState.logs.unshift(newLog);
             if (boardState.logs.length > 50) boardState.logs.pop();
 
-            saveDatabase();
+            saveDatabase(boardState);
+
+            // Update cache
+            await cacheService.setTasks(boardId, boardState.tasks);
+            await cacheService.setLogs(boardId, boardState.logs);
+            await cacheService.setBoardMeta(boardId, {
+              taskCount: boardState.tasks.length,
+              lastUpdate: task.updatedAt
+            });
 
             broadcast({
               type: 'board:sync',
               payload: {
                 board: boardState,
                 actionBy: userId
-              }
+              },
+              boardId
             });
             break;
           }
@@ -294,14 +335,18 @@ async function startServer() {
               };
               boardState.logs.unshift(deleteLog);
               if (boardState.logs.length > 50) boardState.logs.pop();
-              saveDatabase();
+              saveDatabase(boardState);
+
+              // Invalidate cache
+              await cacheService.invalidateBoard(boardId);
 
               broadcast({
                 type: 'board:sync',
                 payload: {
                   board: boardState,
                   actionBy: userId
-                }
+                },
+                boardId
               });
             }
             break;
@@ -311,7 +356,10 @@ async function startServer() {
             const { message } = msg.payload;
             boardState.chat.push(message);
             if (boardState.chat.length > 100) boardState.chat.shift();
-            saveDatabase();
+            saveDatabase(boardState);
+
+            // Update cache
+            await cacheService.setLogs(boardId, boardState.logs);
 
             broadcast({
               type: 'chat:message',
@@ -342,14 +390,16 @@ async function startServer() {
       }
     });
 
-    ws.on('close', () => {
+    ws.on('close', async () => {
       if (myUserId) {
         const userName = activeUsers[myUserId]?.name || 'Unknown User';
         const userAvatar = activeUsers[myUserId]?.avatarColor || 'bg-gray-500';
 
         delete activeUsers[myUserId];
         delete userCursors[myUserId];
-        activeSockets.delete(ws);
+
+        const boardId = DEFAULT_BOARD_ID;
+        const boardState = getBoardState(boardId);
 
         const leaveLog = {
           id: 'leave-' + Math.random().toString(36).substr(2, 9),
@@ -361,7 +411,10 @@ async function startServer() {
         };
         boardState.logs.unshift(leaveLog);
         if (boardState.logs.length > 50) boardState.logs.pop();
-        saveDatabase();
+        saveDatabase(boardState);
+
+        // Update cache
+        await cacheService.setActiveUsers(boardId, activeUsers);
 
         broadcast({
           type: 'user:leave',
@@ -399,11 +452,20 @@ async function startServer() {
   }, 4000);
 
   app.get('*', (req, res) => {
-    res.json({ status: 'backend-running', message: 'Multiplayer Task Board Backend API' });
+    res.json({ 
+      status: 'backend-running', 
+      message: 'Multiplayer Task Board Backend API',
+      endpoints: {
+        health: '/api/health',
+        auth: '/api/auth',
+        boards: '/api/boards'
+      }
+    });
   });
 
   server.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server successfully started on http://localhost:${PORT} with NODE_ENV=${process.env.NODE_ENV || 'development'}`);
+    console.log(`Server successfully started on http://localhost:${PORT}`);
+    console.log(`Redis cache: ${process.env.REDIS_URL || 'redis://localhost:6379'}`);
   });
 }
 

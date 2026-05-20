@@ -33,9 +33,9 @@ export interface User {
   id: string;
   name: string;
   avatarColor: string;
-  activeTaskId: string | null; // Task ID that user is currently hovering/editing
+  activeTaskId: string | null;
   isTyping: boolean;
-  color?: string; // Hex code or Tailwind accent
+  color?: string;
 }
 
 export interface ActivityLog {
@@ -62,16 +62,19 @@ export interface BoardState {
   chat: ChatMessage[];
 }
 
-// WebSocket Event types
+// WebSocket Event types - with boardId support
 export type SocketMessage =
-  | { type: 'init'; payload: { board: BoardState; activeUsers: { [id: string]: User } } }
-  | { type: 'user:join'; payload: { id: string; name: string; avatarColor: string } }
-  | { type: 'user:update'; payload: { id: string; name: string; avatarColor: string; activeTaskId: string | null; isTyping: boolean } }
-  | { type: 'user:leave'; payload: { id: string } }
+  | { type: 'init'; payload: { board: BoardState; activeUsers: { [id: string]: User }; boardId: string } }
+  | { type: 'user:join'; payload: { id: string; name: string; avatarColor: string }; boardId?: string }
+  | { type: 'user:update'; payload: { id: string; name: string; avatarColor: string; activeTaskId: string | null; isTyping: boolean }; boardId?: string }
+  | { type: 'user:leave'; payload: { id: string }; boardId?: string }
   | { type: 'users:sync'; payload: { [id: string]: User } }
-  | { type: 'board:sync'; payload: { board: BoardState; actionBy?: string } }
-  | { type: 'task:upsert'; payload: { task: Task; userId: string; userName: string; avatarColor: string } }
-  | { type: 'task:delete'; payload: { taskId: string; title: string; userId: string; userName: string; avatarColor: string } }
-  | { type: 'chat:message'; payload: { message: ChatMessage } }
-  | { type: 'cursor:move'; payload: { userId: string; userName: string; avatarColor: string; x: number; y: number } }
+  | { type: 'board:sync'; payload: { board: BoardState; actionBy?: string; boardId?: string } }
+  | { type: 'task:upsert'; payload: { task: Task; userId: string; userName: string; avatarColor: string }; boardId?: string }
+  | { type: 'task:delete'; payload: { taskId: string; title: string; userId: string; userName: string; avatarColor: string }; boardId?: string }
+  | { type: 'chat:message'; payload: { message: ChatMessage }; boardId?: string }
+  | { type: 'cursor:move'; payload: { userId: string; userName: string; avatarColor: string; x: number; y: number }; boardId?: string }
   | { type: 'cursor:sync'; payload: { [userId: string]: { userName: string; avatarColor: string; x: number; y: number; lastActive: number } } };
+
+// Default board ID
+export const DEFAULT_BOARD_ID = 'default';
